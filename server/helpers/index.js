@@ -5,6 +5,7 @@ const jwtGiveToken = user => {
     return jwt.sign({ _id: user._id, name: user.name, email: user.email }, secret)
 }
 const jwtVerifyToken = token => {
+    console.log(token)
     return jwt.verify(token, secret)
 }
 
