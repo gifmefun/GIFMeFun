@@ -9,12 +9,7 @@ new Vue({
             email : localStorage.getItem('email'),
             image : localStorage.getItem('image')
         },
-        navMenu : [
-            {
-                text : 'New Articles',
-                icon : 'fas fa-edit'
-            }
-        ],
+        
         vStream : null,
         selectedPage : '',
         gifs : [],
