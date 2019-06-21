@@ -57,7 +57,11 @@
                       >
                       <label data-error="wrong" data-success="right" for="modalLRInput10">Your email</label>
                     </div>
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> my gifs on progress
                     <div class="md-form form-sm mb-4">
                       <i class="fas fa-lock prefix"></i>
                       <input
@@ -119,7 +123,11 @@
                       >
                       <label data-error="wrong" data-success="right" for="modalLRInput12">Your email</label>
                     </div>
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> my gifs on progress
                     <div class="md-form form-sm mb-5">
                       <i class="fas fa-lock prefix"></i>
                       <input
@@ -133,7 +141,11 @@
                         for="modalLRInput13"
                       >Your password</label>
                     </div>
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> my gifs on progress
                     <div class="md-form form-sm mb-4">
                       <i class="fas fa-lock prefix"></i>
                       <input
@@ -193,7 +205,10 @@ export default {};
 </script>
 
 <style scoped>
+<<<<<<< HEAD
 #get-started {
   background: rgba(171, 205, 239, 0.8);
 }
+=======
+>>>>>>> my gifs on progress
 </style>
