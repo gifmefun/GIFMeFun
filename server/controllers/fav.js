@@ -2,27 +2,38 @@ const { wrapAsync, givesError } = require('../helpers')
 const { Article } = require('../models')
 const { deleteFromBucket } = require('../helpers/image-utility')
 const logz = k => { console.log(`~~~~~logz~~~~~~~`); console.log(k); console.log(`~~~~~~~~~~~~~~~~~~~`) }
-
+const path = `https://storage.googleapis.com/mwp-portofolio/giffun-`
 
 const functions = {
     //call this after authentication 
     addFavorite: wrapAsync(async function (req, res) {
-      let newImage = req.body.gif
-      req.user.gifs.addToSet(newImage)
-      let user = await req.user.save()
-      if(user){
-        res.send({gif:newImage, saved:true})
-      }      
+      console.log(req.file)
+      if (req.file && req.file.cloudStoragePublicUrl) {
+        let newImage = req.file.cloudStoragePublicUrl
+        // console.log(newImage)
+        // let newName  = newImage.lastIndexOf('/')
+        req.user.gifs.addToSet(newImage)
+        let user = await req.user.save()
+        if(user){
+          res.json({new: newImage , saved:true})
+        }      
+
+      } else throw givesError(400,'cannot read new image')
+    }),
+    getFavorites:wrapAsync(async function (req, res) {
+      res.json(req.user.gifs)
     }),
 
     deleteFavorite: wrapAsync(async function (req, res) {
+
         let deletedImage = req.body.gif
+        // let fileName = deletedImage.substring(deletedImage.lastIndexOf('/'))
         req.user.gifs.pull(deletedImage)
         let user = await req.user.save()
         if(user){
             let fileName = deletedImage.substring(deletedImage.lastIndexOf('/'))
-            await deleteFromBucket(fileName);
-            res.send({gif:deletedImage, deleted:true})
+            deleteFromBucket(fileName);
+            res.send({deleted:deletedImage, deleted:true})
         }
       }),
 
