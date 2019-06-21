@@ -14,8 +14,7 @@ const getPublicUrl = (filename) => {
 }
 
 const sendUploadToGCS = (req, res, next) => {
-  // console.log(Object.keys(req.file))
-  // console.log(JSON.stringify(req.file, null, 1))
+  
   if (!req.file) {
     return next()
   }
@@ -72,10 +71,11 @@ function fromBase64toFile(req, res, next) {
   }
 
   let image = req.body.featured_image
-  let fileType = `png`;
+  let fileType = `gif`;
   if (/^data:image\/jpeg/.test(image)) { fileType = `jpg` }
+  else if (/^data:image\/png/.test(image)) { fileType = `png` }
 
-  const base64Data = image.replace(/^data:image\/png;base64,|^data:image\/jpeg;base64,/, "");
+  const base64Data = image.replace(/^data:image\/png;base64,|^data:image\/jpeg;base64,|^data:image\/gif;base64,/, "");
   const newFilename = Date.now() + `.${fileType}`
   fs.writeFile(newFilename, base64Data, 'base64', function (err) {
     if (err) {
@@ -84,7 +84,7 @@ function fromBase64toFile(req, res, next) {
       req.file = {}
       req.file.buffer = fs.readFileSync(newFilename)
       req.file.originalName = newFilename
-      req.file.mimetype = `image/${(fileType == `png`) ? `png` : `jpeg`}`
+      req.file.mimetype = `image/${(fileType == `jpg`) ? `jpeg` : fileType}`
       next()
     }
   });
