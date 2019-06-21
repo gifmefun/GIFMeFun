@@ -97,6 +97,9 @@ new Vue({
         },
         throwResultCam(){
             document.getElementById("result").src = '';
+        },
+        removeGIFs(id){
+
         }
     }
 })

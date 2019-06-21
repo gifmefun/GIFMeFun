@@ -90,6 +90,7 @@
             <div class="row" style="height:540px; overflow: scroll;" >
                     <div v-for="gif in gifs" class="card" style="width: 18rem;">
                         <img :src="gif" class="card-img-top" alt="Card image cap">
+                        <button @click="removeGIFs(gif._id)">remove</button>
                     </div>
             </div>
         </div>
