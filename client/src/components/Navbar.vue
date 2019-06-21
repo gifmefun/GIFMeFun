@@ -27,7 +27,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link btn btn-info" href="#">My GIFs</a>
+          <a @click.prevent="$emit('myGIFsPage')" class="nav-link btn btn-info" href="#">My GIFs</a>
         </li>
         <li class="nav-item dropdown">
           <a
@@ -47,10 +47,10 @@
             >
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">My GIFs</a>
-            <a class="dropdown-item" href="#">Edit Profile</a>
+            <a @click.prevent="$emit('myGIFsPage')" class="dropdown-item" href="#">My GIFs</a>
+            <a @click.prevent="$emit('profilePage')" class="dropdown-item" href="#">Edit Profile</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Logout</a>
+            <a @click.prevent="$emit('logout')" class="dropdown-item" href="#">Logout</a>
           </div>
         </li>
       </ul>
@@ -62,6 +62,10 @@
 export default {
   data() {
     return {};
+  },
+  
+  methods:{
+    
   }
 };
 </script>
