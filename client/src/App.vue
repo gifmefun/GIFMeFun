@@ -1,15 +1,17 @@
 <template>
   <div id="app">
     <Navbar v-show="showPage=='main'"/>
-    <Landing/>
-    <MyGIFs/>
+    <Landing v-show="showPage=='landing'"/>
+    <div class="card-deck">
+    <MyGIFs v-for="gif in gifs" :key="gif"/>
+    </div>
   </div>
 </template>
 
 <script>
 import Navbar from './components/Navbar.vue'
 import Landing from './components/Landing.vue'
-import MyGIFS from './components/MyGIFs.vue'
+import MyGIFs from './components/MyGIFs.vue'
 
 export default {
   name: 'app',
