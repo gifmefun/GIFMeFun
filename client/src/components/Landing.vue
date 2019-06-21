@@ -1,15 +1,11 @@
 <template>
-  <div>
+  <div id="get-started">
     <!--Modal: Login / Register Form-->
-    <div
-      id="get-started"
-      class="text-center"
-      style="font-family: 'Bungee Shade', cursive;background: transparent;"
-    >
-      <p>Let's have some fun, shall we?</p>
+    <div class="text-center" style="font-family: 'Bungee Shade', cursive;">
+      <h1>Let's have some fun, shall we?</h1>
       <a
         href="#"
-        class="btn btn-default btn-rounded my-3"
+        class="btn btn-lg btn-default btn-rounded my-3"
         data-toggle="modal"
         data-target="#modalLRForm"
         style="font-family: 'Eater', cursive;"
@@ -61,7 +57,7 @@
                       >
                       <label data-error="wrong" data-success="right" for="modalLRInput10">Your email</label>
                     </div>
-  
+
                     <div class="md-form form-sm mb-4">
                       <i class="fas fa-lock prefix"></i>
                       <input
@@ -123,7 +119,7 @@
                       >
                       <label data-error="wrong" data-success="right" for="modalLRInput12">Your email</label>
                     </div>
-  
+
                     <div class="md-form form-sm mb-5">
                       <i class="fas fa-lock prefix"></i>
                       <input
@@ -137,7 +133,7 @@
                         for="modalLRInput13"
                       >Your password</label>
                     </div>
-  
+
                     <div class="md-form form-sm mb-4">
                       <i class="fas fa-lock prefix"></i>
                       <input
@@ -197,4 +193,7 @@ export default {};
 </script>
 
 <style scoped>
+#get-started {
+  background: rgba(171, 205, 239, 0.8);
+}
 </style>

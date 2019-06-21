@@ -11,7 +11,6 @@
           <i class="fab fa-facebook-square align-middle" style="font-size:25px; "></i>
           <span class="align-middle">Share on Facebook</span>
         </button>
-        <small class="text-muted">Last updated 3 mins ago</small>
       </div>
     </div>
 </template>
@@ -22,6 +21,8 @@ export default {
     return {
 
     }
+  },
+  computed:{
   }
 }
 </script>
