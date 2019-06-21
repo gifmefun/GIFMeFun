@@ -51,20 +51,17 @@
                     <div class="md-form form-sm mb-5">
                       <i class="fas fa-envelope prefix"></i>
                       <input
+                        v-model="inputLogin.email"
                         type="email"
                         id="modalLRInput10"
                         class="form-control form-control-sm validate"
                       >
                       <label data-error="wrong" data-success="right" for="modalLRInput10">Your email</label>
                     </div>
-<<<<<<< HEAD
-
-=======
-  
->>>>>>> my gifs on progress
                     <div class="md-form form-sm mb-4">
                       <i class="fas fa-lock prefix"></i>
                       <input
+                        v-model="inputLogin.password"
                         type="password"
                         id="modalLRInput11"
                         class="form-control form-control-sm validate"
@@ -115,22 +112,29 @@
                 <div class="modal-body">
                   <form @submit.prevent="register">
                     <div class="md-form form-sm mb-5">
+                      <i class="fas fa-user prefix grey-text"></i>
+                      <input
+                        v-model="inputRegister.name"
+                        type="text"
+                        id="form3"
+                        class="form-control validate"
+                      >
+                      <label data-error="wrong" data-success="right" for="form3">Your name</label>
+                    </div>
+                    <div class="md-form form-sm mb-5">
                       <i class="fas fa-envelope prefix"></i>
                       <input
+                        v-model="inputRegister.email"
                         type="email"
                         id="modalLRInput12"
                         class="form-control form-control-sm validate"
                       >
                       <label data-error="wrong" data-success="right" for="modalLRInput12">Your email</label>
                     </div>
-<<<<<<< HEAD
-
-=======
-  
->>>>>>> my gifs on progress
                     <div class="md-form form-sm mb-5">
                       <i class="fas fa-lock prefix"></i>
                       <input
+                        v-model="inputRegister.password"
                         type="password"
                         id="modalLRInput13"
                         class="form-control form-control-sm validate"
@@ -141,26 +145,13 @@
                         for="modalLRInput13"
                       >Your password</label>
                     </div>
-<<<<<<< HEAD
-
-=======
-  
->>>>>>> my gifs on progress
-                    <div class="md-form form-sm mb-4">
-                      <i class="fas fa-lock prefix"></i>
-                      <input
-                        type="password"
-                        id="modalLRInput14"
-                        class="form-control form-control-sm validate"
-                      >
-                      <label
-                        data-error="wrong"
-                        data-success="right"
-                        for="modalLRInput14"
-                      >Repeat password</label>
-                    </div>
                     <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="customFile">
+                      <input
+                        @change="selectFile"
+                        type="file"
+                        class="custom-file-input"
+                        id="customFile"
+                      >
                       <label class="custom-file-label" for="customFile">Choose file</label>
                     </div>
                     <div class="text-center form-sm mt-2">
@@ -201,14 +192,87 @@
 </template>
 
 <script>
-export default {};
+import axios from "../axios.js";
+export default {
+  data() {
+    return {
+      inputLogin: {
+        email: "",
+        password: ""
+      },
+      inputRegister: {
+        name: "",
+        email: "",
+        password: "",
+        image: ""
+      }
+    };
+  },
+  methods: {
+    emptyOnSuccess() {
+      this.inputLogin.email = "";
+      this.inputLogin.password = "";
+      this.inputRegister.name = "";
+      this.inputRegister.email = "";
+      this.inputRegister.password = "";
+      this.inputRegister.image = "";
+    },
+    emptyOnFail() {
+      this.inputLogin.password = "";
+      this.inputRegister.password = "";
+    },
+    selectFile() {
+      this.inputRegister.image = event.target.files[0];
+    },
+    register() {
+      axios({
+        method: "post",
+        url: `/auth/register`,
+        data: this.inputRegister
+      })
+        .then(({ data }) => {
+          this.emptyOnSuccess();
+          Swal.fire({
+            type: "success",
+            title: "Registered!",
+            showConfirmButton: false,
+            timer: 2000
+          });
+        })
+        .catch(({ response }) => {
+          this.emptyOnFail();
+          Swal.fire("Error", response.data.message, "error");
+        });
+    },
+    login() {
+      axios({
+        method: "post",
+        url: `/auth/login`,
+        data: this.inputLogin
+      })
+        .then(({ data }) => {
+          this.emptyOnSuccess();
+          console.log(data);
+          $('#modalLRForm').modal('hide')
+          this.$emit('loginSuccess',data.user)
+          Swal.fire({
+            type: "success",
+            title: "Logged In!",
+            showConfirmButton: false,
+            timer: 2000
+          });
+        })
+        .catch(({ response }) => {
+          this.emptyOnFail();
+          Swal.fire("Error", response.data.message, "error");
+        });
+    }
+  }
+};
 </script>
 
 <style scoped>
-<<<<<<< HEAD
 #get-started {
   background: rgba(171, 205, 239, 0.8);
 }
-=======
->>>>>>> my gifs on progress
 </style>

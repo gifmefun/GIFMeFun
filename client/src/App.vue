@@ -6,9 +6,11 @@
       @profilePage="showPage='profile'"
       @logout="logout"
     />
-    <Landing v-show="showPage=='landing'"/>
-    <div class="card-deck" v-show="showPage=='mygifs'">
-      <MyGIFs v-for="gif in gifs" :key="gif"/>
+    <Landing v-show="showPage=='landing'" @loginSuccess="checkLogin"/>
+    <div v-show="showPage=='mygifs'" class="container">
+      <div class="card-deck">
+        <MyGIFs v-for="gif in gifs" :key="gif"/>
+      </div>
     </div>
   </div>
 </template>
@@ -27,18 +29,30 @@ export default {
   },
   data() {
     return {
-      showPage: "main"
+      showPage: "landing"
     };
   },
   created() {
-    // if (localStorage.getItem("token")) {
-    //   this.showPage = "main";
-    // } else {
-    //   this.showPage = "landing";
-    // }
+    this.checkLogin();
   },
   methods: {
+    checkLogin(user) {
+      if(user){
+        localStorage.setItem('name',user.name)
+        localStorage.setItem('email',user.email)
+        localStorage.setItem('imageURL',user.imageURL)
+        localStorage.setItem('token',user.token)
+      }
+      if (localStorage.getItem("token")) {
+        this.showPage = "main";
+      } else {
+        this.showPage = "landing";
+      }
+    },
     logout() {
+      localStorage.removeItem("name");
+      localStorage.removeItem("email");
+      localStorage.removeItem("imageURL");
       localStorage.removeItem("token");
       this.showPage = "landing";
     }

@@ -47,17 +47,10 @@
             >
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-<<<<<<< HEAD
             <a @click.prevent="$emit('myGIFsPage')" class="dropdown-item" href="#">My GIFs</a>
             <a @click.prevent="$emit('profilePage')" class="dropdown-item" href="#">Edit Profile</a>
             <div class="dropdown-divider"></div>
             <a @click.prevent="$emit('logout')" class="dropdown-item" href="#">Logout</a>
-=======
-            <a class="dropdown-item" href="#">My GIFs</a>
-            <a class="dropdown-item" href="#">Edit Profile</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Logout</a>
->>>>>>> my gifs on progress
           </div>
         </li>
       </ul>
@@ -69,13 +62,10 @@
 export default {
   data() {
     return {};
-<<<<<<< HEAD
   },
   
   methods:{
     
-=======
->>>>>>> my gifs on progress
   }
 };
 </script>
