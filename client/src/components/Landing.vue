@@ -237,7 +237,7 @@ export default {
         data: formData
       })
         .then(({ data }) => {
-          this.emptyOnSuccess();
+          this.emptyOnSuccess()
           Swal.fire({
             type: "success",
             title: "Registered!",
@@ -260,7 +260,7 @@ export default {
           this.emptyOnSuccess();
           console.log(data);
           $('#modalLRForm').modal('hide')
-          this.$emit('loginSuccess',data.user)
+          this.$emit('loginSuccess',data)
           Swal.fire({
             type: "success",
             title: "Logged In!",
