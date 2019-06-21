@@ -95,11 +95,14 @@ function fromBase64toFile2(req, res, next) {
 
 function fromBase64toFile(req, res, next) {
   // console.log(req.body)
-  // console.log(!req.body.resultCam)
-  if (!req.body.resultCam) {
-    console.log(`it's either the same image, or the body request is null`)
-    return next()
-  }
+  console.log(`~~~~~~~~~~~~~~~`)
+  console.log(req.body)
+  console.log(`~~~~~~~~~~~~~~~`)
+  // if (!req.body.resultCam) {
+  //   console.log(`it's either the same image, or the body request is null`)
+  //   return next()
+  // }
+
 
   console.log(`there is an image to process`)
   let image = req.body.resultCam

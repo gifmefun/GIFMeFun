@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 const Schema = require('mongoose').Schema
 
 let userSchema = new Schema({    
-    name:{type:String,required:true},
+    name:{type:String},
     email: {
         type: String, match: [/\w+@\w+\.\w+/, 'please supply a valid email format'],
         required: true,
