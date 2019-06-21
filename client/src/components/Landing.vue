@@ -222,13 +222,19 @@ export default {
       this.inputRegister.password = "";
     },
     selectFile() {
-      this.inputRegister.image = event.target.files[0];
+      if(event.target.files[0])
+        this.inputRegister.image = event.target.files[0];
     },
     register() {
+      let formData = new FormData()
+        formData.append('name',this.inputRegister.name)
+        formData.append('email',this.inputRegister.email)
+        formData.append('password',this.inputRegister.password)
+        formData.append('imageURL',this.inputRegister.image)
       axios({
         method: "post",
         url: `/auth/register`,
-        data: this.inputRegister
+        data: formData
       })
         .then(({ data }) => {
           this.emptyOnSuccess();
