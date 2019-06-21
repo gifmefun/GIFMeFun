@@ -6,7 +6,8 @@ new Vue({
         isRegister : false,
         loggedUser : {
             name : localStorage.getItem('username'),
-            email : localStorage.getItem('email')
+            email : localStorage.getItem('email'),
+            image : localStorage.getItem('image')
         },
         navMenu : [
             {
@@ -16,16 +17,21 @@ new Vue({
         ],
         vStream : null,
         selectedPage : '',
-        gifs : []
+        gifs : [],
+        resultCam : ''
     },
     methods : {
         creategif : function (){
             gifshot.createGIF(function(obj) {
                 if(!obj.error) {
-                    var image = obj.image,
-                    animatedImage = document.createElement('img');
-                    animatedImage.src = image;
-                    document.body.appendChild(animatedImage);
+                    document.getElementById("result").src = ''
+                    var image = obj.image
+                    // animatedImage = document.createElement('img');
+                    // animatedImage.src = image;
+                    // document.body.appendChild(animatedImage);
+                    document.getElementById("result").src = image;
+                    this.resultCam = image
+                    console.log(this.resultCam)
                 }
             });
         },
@@ -55,12 +61,42 @@ new Vue({
             // this.vStream.stop()
             // this.vStream = null
         },
+        snapshot(){
+            gifshot.takeSnapShot(function(obj) {
+                if(!obj.error) {
+                  document.getElementById("result").src = ''
+                  var image = obj.image
+                  console.log(obj)
+                  this.resultCam = image
+                  console.log(this.resultCam)
+                  animatedImage = document.createElement('img');
+                  document.getElementById("result").src = image;
+                //   document.getElementById("result").appendChild(animatedImage)
+                //   document.body.appendChild(animatedImage);
+                }
+              });
+        },
         changePage(page){
             this.selectedPage = page
         },
         getGifs(){
             // ambil dari database
             this.gifs = '...' //update state gifs
+        },
+        updateUser(){
+
+        },
+        saveGIF(){
+
+        },
+        saveResult(){
+
+        },
+        share(){
+
+        },
+        throwResultCam(){
+            document.getElementById("result").src = '';
         }
     }
 })
